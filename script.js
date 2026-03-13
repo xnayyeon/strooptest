@@ -105,8 +105,8 @@ function updateStatsDisplay() {
   roundValue.textContent = `${currentRound}/${TOTAL_ROUNDS}`;
 }
 
-function formatSeconds(ms) {
-  return `${(ms / 1000).toFixed(2)} S`;
+function formatMilliseconds(ms) {
+  return `${Math.round(ms)} ms`;
 }
 
 function calculateAverage(trials) {
@@ -158,7 +158,7 @@ function updateTimer() {
   }
 
   const remainingMs = Math.max(0, testDeadline - performance.now());
-  timerValue.textContent = `${(remainingMs / 1000).toFixed(1)}S`;
+  timerValue.textContent = formatMilliseconds(remainingMs);
 
   if (remainingMs <= 0) {
     endRound();
@@ -225,11 +225,11 @@ function buildRoundResult(roundData) {
     </div>
     <div class="summary-box">
       <span class="summary-label">KONGRUENT MITTEL</span>
-      <strong class="summary-value">${formatSeconds(roundData.congruentAverageMs)}</strong>
+      <strong class="summary-value">${formatMilliseconds(roundData.congruentAverageMs)}</strong>
     </div>
     <div class="summary-box">
       <span class="summary-label">INKONGRUENT MITTEL</span>
-      <strong class="summary-value">${formatSeconds(roundData.incongruentAverageMs)}</strong>
+      <strong class="summary-value">${formatMilliseconds(roundData.incongruentAverageMs)}</strong>
     </div>
   `;
 
@@ -270,7 +270,7 @@ function buildRoundResult(roundData) {
       <td>${attempt.selectedColor.toUpperCase()}</td>
       <td>${attempt.isCorrect ? "✅" : "❌"}</td>
       <td>${attempt.isCongruent ? "KONGRUENT" : "INKONGRUENT"}</td>
-      <td>${formatSeconds(attempt.durationMs)}</td>
+      <td>${formatMilliseconds(attempt.durationMs)}</td>
     `;
     tbody.appendChild(row);
   });
@@ -305,7 +305,7 @@ function endRound() {
   testRunning = false;
   clearInterval(timerId);
   timerId = null;
-  timerValue.textContent = "0.0S";
+  timerValue.textContent = "0 ms";
   setTestButtonsDisabled(true);
   storeCurrentRound();
 
@@ -363,7 +363,7 @@ durationInputs.forEach((input) => {
   input.addEventListener("change", () => {
     if (input.checked) {
       selectedDurationMs = Number(input.value);
-      timerValue.textContent = `${(selectedDurationMs / 1000).toFixed(1)}S`;
+      timerValue.textContent = formatMilliseconds(selectedDurationMs);
     }
   });
 });
