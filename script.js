@@ -6,6 +6,18 @@ const WORDS = [
 ];
 const COLORS = ["red", "blue", "green", "yellow"];
 const TOTAL_ROUNDS = 2;
+const DISPLAY_COLORS = {
+  red: "#d64b44",
+  blue: "#2776dc",
+  green: "#2e9d58",
+  yellow: "#ddb625"
+};
+const KEY_TO_COLOR = {
+  d: "red",
+  f: "green",
+  j: "blue",
+  k: "yellow"
+};
 
 const introCard = document.getElementById("introCard");
 const testCard = document.getElementById("testCard");
@@ -84,7 +96,7 @@ function showPrompt() {
   }
   currentPromptShownAt = performance.now();
   stroopWord.textContent = currentPrompt.label;
-  stroopWord.style.color = currentPrompt.fontColor;
+  stroopWord.style.color = DISPLAY_COLORS[currentPrompt.fontColor] ?? currentPrompt.fontColor;
 }
 
 function updateStatsDisplay() {
@@ -360,4 +372,18 @@ answerButtons.forEach((button) => {
   button.addEventListener("click", () => {
     handleAnswer(button.dataset.color);
   });
+});
+
+document.addEventListener("keydown", (event) => {
+  const pressedKey = event.key.toLowerCase();
+  const selectedColor = KEY_TO_COLOR[pressedKey];
+
+  if (!selectedColor || event.repeat) {
+    return;
+  }
+
+  if (testRunning) {
+    event.preventDefault();
+    handleAnswer(selectedColor);
+  }
 });

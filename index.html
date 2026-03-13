@@ -34,6 +34,12 @@
         <li>Nach jeder Antwort erscheint sofort ein neues Wort.</li>
         <li>Richtige und falsche Antworten werden beide erfasst.</li>
       </ul>
+      <div class="keybind-hint" aria-label="Tastaturbelegung">
+        <span class="keybind-chip"><kbd>D</kbd> ROT</span>
+        <span class="keybind-chip"><kbd>F</kbd> GRÜN</span>
+        <span class="keybind-chip"><kbd>J</kbd> BLAU</span>
+        <span class="keybind-chip"><kbd>K</kbd> GELB</span>
+      </div>
       <button class="primary-button" id="startButton" type="button">Test Starten</button>
     </section>
 
@@ -62,11 +68,18 @@
         <div class="stroop-word" id="stroopWord">ROT</div>
       </div>
 
+      <div class="keybind-hint keybind-hint-inline" aria-label="Tastaturbelegung">
+        <span class="keybind-chip"><kbd>D</kbd> ROT</span>
+        <span class="keybind-chip"><kbd>F</kbd> GRÜN</span>
+        <span class="keybind-chip"><kbd>J</kbd> BLAU</span>
+        <span class="keybind-chip"><kbd>K</kbd> GELB</span>
+      </div>
+
       <div class="button-grid" id="answerButtons" role="group" aria-label="Farboptionen">
-        <button type="button" class="color-button red" data-color="red">ROT</button>
-        <button type="button" class="color-button blue" data-color="blue">BLAU</button>
-        <button type="button" class="color-button green" data-color="green">GRÜN</button>
-        <button type="button" class="color-button yellow" data-color="yellow">GELB</button>
+        <button type="button" class="color-button red" data-color="red" data-key="d">ROT <span class="button-key">D</span></button>
+        <button type="button" class="color-button blue" data-color="blue" data-key="j">BLAU <span class="button-key">J</span></button>
+        <button type="button" class="color-button green" data-color="green" data-key="f">GRÜN <span class="button-key">F</span></button>
+        <button type="button" class="color-button yellow" data-color="yellow" data-key="k">GELB <span class="button-key">K</span></button>
       </div>
     </section>
 
@@ -74,6 +87,12 @@
       <p class="eyebrow">Weiter geht's</p>
       <h2 id="breakRoundLabel">RUNDE 1 ABGESCHLOSSEN</h2>
       <p class="lead">Atme kurz durch und warte dann, bis der Versuchsleiter die nächste Runde startet.</p>
+      <div class="keybind-hint" aria-label="Tastaturbelegung">
+        <span class="keybind-chip"><kbd>D</kbd> ROT</span>
+        <span class="keybind-chip"><kbd>F</kbd> GRÜN</span>
+        <span class="keybind-chip"><kbd>J</kbd> BLAU</span>
+        <span class="keybind-chip"><kbd>K</kbd> GELB</span>
+      </div>
       <button class="primary-button" id="nextRoundButton" type="button">RUNDE 2 STARTEN</button>
     </section>
 
@@ -89,6 +108,13 @@
           <span class="summary-label">FALSCH GESAMT</span>
           <strong class="summary-value" id="overallIncorrect">0</strong>
         </div>
+      </div>
+
+      <div class="keybind-hint" aria-label="Tastaturbelegung">
+        <span class="keybind-chip"><kbd>D</kbd> ROT</span>
+        <span class="keybind-chip"><kbd>F</kbd> GRÜN</span>
+        <span class="keybind-chip"><kbd>J</kbd> BLAU</span>
+        <span class="keybind-chip"><kbd>K</kbd> GELB</span>
       </div>
 
       <div id="roundResults" class="round-results"></div>
