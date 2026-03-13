@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroop-Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="card intro-card" id="introCard">
+      <p class="eyebrow">Farbbenennungsaufgabe</p>
+      <h1>Stroop-Test</h1>
+      <p class="lead">
+        Nenne oder denke die Schriftfarbe, nicht das geschriebene Wort. Klicke so schnell wie
+        möglich auf die Schaltfläche, die zur Farbe des Textes passt.
+      </p>
+      <div class="duration-picker" role="radiogroup" aria-label="Testdauer">
+        <span class="duration-label">Dauer</span>
+        <label class="duration-option">
+          <input type="radio" name="duration" value="30000" checked>
+          <span>30 SEKUNDEN</span>
+        </label>
+        <label class="duration-option">
+          <input type="radio" name="duration" value="60000">
+          <span>1 MINUTE</span>
+        </label>
+      </div>
+      <ul class="rules">
+        <li>Wähle entweder 30 Sekunden oder 1 Minute.</li>
+        <li>Nach jeder Antwort erscheint sofort ein neues Wort.</li>
+        <li>Richtige und falsche Antworten werden beide erfasst.</li>
+      </ul>
+      <button class="primary-button" id="startButton" type="button">Test Starten</button>
+    </section>
+
+    <section class="card test-card hidden" id="testCard" aria-live="polite">
+      <div class="status-bar">
+        <div>
+          <p class="status-label">Verbleibende Zeit</p>
+          <p class="status-value" id="timerValue">30.0S</p>
+        </div>
+        <div>
+          <p class="status-label">Korrekte Wörter</p>
+          <p class="status-value" id="wordCountValue">0</p>
+        </div>
+        <div>
+          <p class="status-label">Aktueller Versuch</p>
+          <p class="status-value" id="trialValue">1</p>
+        </div>
+        <div>
+          <p class="status-label">Runde</p>
+          <p class="status-value" id="roundValue">1/2</p>
+        </div>
+      </div>
+
+      <div class="word-panel">
+        <p class="instruction">Wähle die Farbe des folgenden Wortes:</p>
+        <div class="stroop-word" id="stroopWord">ROT</div>
+      </div>
+
+      <div class="button-grid" id="answerButtons" role="group" aria-label="Farboptionen">
+        <button type="button" class="color-button red" data-color="red">ROT</button>
+        <button type="button" class="color-button blue" data-color="blue">BLAU</button>
+        <button type="button" class="color-button green" data-color="green">GRÜN</button>
+        <button type="button" class="color-button yellow" data-color="yellow">GELB</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="roundBreakCard">
+      <p class="eyebrow">Weiter geht's</p>
+      <h2 id="breakRoundLabel">RUNDE 1 ABGESCHLOSSEN</h2>
+      <p class="lead">Atme kurz durch und warte dann, bis der Versuchsleiter die nächste Runde startet.</p>
+      <button class="primary-button" id="nextRoundButton" type="button">RUNDE 2 STARTEN</button>
+    </section>
+
+    <section class="card results-card hidden" id="resultsCard">
+      <p class="eyebrow">Experiment Abgeschlossen</p>
+      <h2>Ergebnisse Beider Runden</h2>
+      <div class="summary-grid">
+        <div class="summary-box">
+          <span class="summary-label">RICHTIG GESAMT</span>
+          <strong class="summary-value" id="overallCorrect">0</strong>
+        </div>
+        <div class="summary-box">
+          <span class="summary-label">FALSCH GESAMT</span>
+          <strong class="summary-value" id="overallIncorrect">0</strong>
+        </div>
+      </div>
+
+      <div id="roundResults" class="round-results"></div>
+
+      <button class="primary-button" id="restartButton" type="button">Erneut Starten</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
